@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
-use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -23,9 +23,9 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // Fire the Registered event (this triggers the sending of the verification email)
         event(new Registered($user));
 
         return response()->json(['message' => 'User registered. Please check your email for verification.']);
     }
 }
-
