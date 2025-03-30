@@ -12,9 +12,17 @@ Route::get('/user', function (Request $request) {
 // Register User
 Route::post('register', [AuthController::class, 'register']);
 
+Route::post('defualtregister', [AuthController::class, 'defualtregister']);
+
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return response()->json(['message' => 'Email verified successfully.']);
 })->middleware(['signed'])->name('verification.verify');
 
 
+
+// Send OTP to the user's email
+Route::post('send-otp', [AuthController::class, 'sendOtp']);
+
+// Verify OTP to verify the user's email
+Route::post('verify-otp', [AuthController::class, 'verifyOtp']);
