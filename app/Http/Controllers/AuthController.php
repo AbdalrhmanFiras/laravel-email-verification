@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 
 use Carbon\Carbon;
 class AuthController extends Controller
-{
+{// its the main register 
     public function defualtregister(Request $request)
     {
         $request->validate([
@@ -31,7 +31,7 @@ class AuthController extends Controller
     }
     //////////////////////////////////////////////////////////////////////////////////
     public function sendOtp(Request $request)
-    {
+    {// here i verification by OTP (one-time-password)
         // Validate the email
         $request->validate([
             'email' => 'required|email|exists:users,email',
@@ -45,7 +45,7 @@ class AuthController extends Controller
 
         // Store the OTP and its expiry time (10 minutes)
         $user->otp = $otp;
-        $user->otp_expires_at = Carbon::now()->addMinutes(10);
+        $user->otp_expires_at = Carbon::now()->addMinutes(5);
         $user->save();
 
         // Send OTP email
