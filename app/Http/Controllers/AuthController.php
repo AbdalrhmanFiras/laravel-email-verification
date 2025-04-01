@@ -29,7 +29,8 @@ class AuthController extends Controller
         // Fire the Registered event (this triggers the sending of the verification email)
         return response()->json(['message' => 'User registered. ', 'user' => $user]);
     }
-    //////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+
     public function sendOtp(Request $request)
     {// here i verification by OTP (one-time-password)
         // Validate the email
@@ -43,7 +44,7 @@ class AuthController extends Controller
         // Generate a 6-digit OTP
         $otp = mt_rand(100000, 999999);
 
-        // Store the OTP and its expiry time (10 minutes)
+        // Store the OTP and its expiry time (5 minutes)
         $user->otp = $otp;
         $user->otp_expires_at = Carbon::now()->addMinutes(5);
         $user->save();

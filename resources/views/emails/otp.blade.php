@@ -11,7 +11,7 @@
     <p>Dear User,</p>
     <p>Your One-Time Password (OTP) for email verification is:</p>
     <h3>{{ $otp }}</h3>
-    <p>This OTP will expire in 10 minutes.</p>
+    <p>This OTP will expire in 5 minutes.</p>
     <p>Best Regards,</p>
     <p>Your App Team</p>
 </body>

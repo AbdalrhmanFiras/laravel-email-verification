@@ -14,11 +14,13 @@ Route::post('defualtregister', [AuthController::class, 'defualtregister']);
 
 // Register for verify link
 Route::post('register', [AuthController::class, 'register']);
-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return response()->json(['message' => 'Email verified successfully.']);
 })->middleware(['signed'])->name('verification.verify');
+
+
+
 
 
 
